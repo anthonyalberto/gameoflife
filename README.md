@@ -16,7 +16,7 @@ Go implementation of Conway's Game of Life
 
 ### Cell
 - Build a Cell type that has a `state`, `NextState`, and `Neighbors`. `Neighbors` will be a slice that contains pointers to the cell's neighbors
-- Implements a `nextState()` that will determine, according to neighbors, the next generation state
+- Implements a `NextState()` that will determine, according to neighbors, the next generation state
 - Implements `GoToNext()` that will set `state` as `nextState`. `nextState` becomes nil
 
 ### CellCoordinates
