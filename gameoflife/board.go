@@ -81,9 +81,9 @@ func (b *board) step() {
 func (b *board) display() {
 	var outputString string
 
-	for i := 0; i < b.width; i++ {
-		for j := 0; j < b.height; j++ {
-			if b.cells[i][j].alive {
+	for i := 0; i < b.height; i++ {
+		for j := 0; j < b.width; j++ {
+			if b.cells[j][i].alive {
 				outputString += "O"
 			} else {
 				outputString += " "

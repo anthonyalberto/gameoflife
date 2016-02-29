@@ -8,7 +8,13 @@ type cell struct {
 
 func (c *cell) computeNextState() {
 	switch c.aliveNeighborsCount() {
-	case 2, 3:
+	case 2:
+		if c.alive {
+			c.nextAlive = true
+		} else {
+			c.nextAlive = false
+		}
+	case 3:
 		c.nextAlive = true
 	default:
 		c.nextAlive = false

@@ -14,14 +14,13 @@ type aliveCoordinates struct {
 }
 
 func (p *patternParser) extractCoordinates() *coordCollection {
-	a := coordCollection{}
 	fileContent := p.readFile()
 
 	var aliveCoords aliveCoordinates
 	err := json.Unmarshal(fileContent, &aliveCoords)
 	check(err)
 
-	return &a
+	return &coordCollection{aliveCoords.Alive}
 }
 
 func (p *patternParser) readFile() []byte {

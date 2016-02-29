@@ -1,8 +1,8 @@
 package main
 
-import "github.com/anthonyalberto/gameoflife"
+import "github.com/anthonyalberto/gameoflife/gameoflife"
 
 func main() {
 	game := gameoflife.Game{}
-	game.Play(50, 50, "patterns/glider.json", "regular")
+	game.Play(150, 50, "patterns/glidergun.json", "regular")
 }
