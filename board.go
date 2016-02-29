@@ -1,5 +1,11 @@
 package gameoflife
 
+import (
+	"fmt"
+	"os"
+	"os/exec"
+)
+
 type board struct {
 	width            int
 	height           int
@@ -55,4 +61,40 @@ func (b *board) cell(x int, y int) (*cell, bool) {
 	}
 
 	return b.cells[x][y], true
+}
+
+func (b *board) step() {
+	// TODO: use goroutines
+	for i := 0; i < b.width; i++ {
+		for j := 0; j < b.height; j++ {
+			b.cells[i][j].computeNextState()
+		}
+	}
+
+	for i := 0; i < b.width; i++ {
+		for j := 0; j < b.height; j++ {
+			b.cells[i][j].nextGeneration()
+		}
+	}
+}
+
+func (b *board) display() {
+	var outputString string
+
+	for i := 0; i < b.width; i++ {
+		for j := 0; j < b.height; j++ {
+			if b.cells[i][j].alive {
+				outputString += "O"
+			} else {
+				outputString += " "
+			}
+		}
+
+		outputString += "\n"
+	}
+
+	clear, _ := exec.Command("clear").Output()
+	os.Stdout.Write(clear)
+	// os.Stdout.Write(outputString)
+	fmt.Printf(outputString)
 }
