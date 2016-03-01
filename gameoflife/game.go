@@ -8,18 +8,18 @@ type Game struct {
 }
 
 // Play is the entry point to start a new game
-func (g *Game) Play(boardWidth int, boardHeight int, patternFilePath string, neighborStrategy string) {
+func (g *Game) Play(boardWidth int, boardHeight int, patternFilePath string, neighborStrategy string, generationTime time.Duration) {
 	parser := patternParser{patternFilePath: patternFilePath}
 
 	g.board = newBoard(boardWidth, boardHeight, parser.extractCoordinates(), neighborStrategy)
 
-	g.start()
+	g.start(generationTime)
 }
 
-func (g *Game) start() {
+func (g *Game) start(generationTime time.Duration) {
 	for {
 		g.Display()
-		time.Sleep(50 * time.Millisecond)
+		time.Sleep(generationTime * time.Millisecond)
 		g.Step()
 	}
 }
