@@ -7,10 +7,10 @@ import (
 )
 
 type board struct {
-	width            int
-	height           int
-	neighborStrategy neighborStrategy
-	cells            [][]*cell
+	width  int
+	height int
+	neighborStrategy
+	cells [][]*cell
 }
 
 func newBoard(width int, height int, aliveCoordinates *coordCollection, neighborStrategyStr string) *board {
@@ -30,7 +30,8 @@ func (b *board) initNeighborStrategy(neighborStrategyStr string) {
 	switch neighborStrategyStr {
 	case "regular":
 		b.neighborStrategy = &regularNeighborStrategy{}
-		//case "tororial":
+	case "toroidal":
+		b.neighborStrategy = &toroidalNeighborStrategy{}
 	}
 }
 
@@ -50,7 +51,7 @@ func (b *board) initCells(aliveCoordinates *coordCollection) {
 func (b *board) setNeighbors() {
 	for i := 0; i < b.width; i++ {
 		for j := 0; j < b.height; j++ {
-			b.cells[i][j].neighbors = b.neighborStrategy.neighbors(b, i, j)
+			b.cells[i][j].neighbors = b.Neighbors(b, i, j)
 		}
 	}
 }
@@ -63,7 +64,7 @@ func (b *board) cell(x int, y int) (*cell, bool) {
 	return b.cells[x][y], true
 }
 
-func (b *board) step() {
+func (b *board) Step() {
 	// TODO: use goroutines
 	for i := 0; i < b.width; i++ {
 		for j := 0; j < b.height; j++ {
@@ -78,7 +79,7 @@ func (b *board) step() {
 	}
 }
 
-func (b *board) display() {
+func (b *board) Display() {
 	var outputString string
 
 	for i := 0; i < b.height; i++ {
@@ -97,4 +98,8 @@ func (b *board) display() {
 	os.Stdout.Write(clear)
 	// os.Stdout.Write(outputString)
 	fmt.Printf(outputString)
+}
+
+func (b *board) neighborCoordinateOffsets() [][]int {
+	return [][]int{{-1, -1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}, {0, 1}, {-1, 1}, {-1, 0}}
 }

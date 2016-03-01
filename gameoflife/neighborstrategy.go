@@ -1,5 +1,5 @@
 package gameoflife
 
 type neighborStrategy interface {
-	neighbors(*board, int, int) []*cell
+	Neighbors(*board, int, int) []*cell
 }
