@@ -1,18 +1,28 @@
 # Game of Life
 Go implementation of Conway's Game of Life
 
-**Under development**
+## Installation
 
-## Goals
-- Outputs to terminal
-- Implement cell state computation using goroutines
-- Provide an interface for the Board. Implement different boards (regular, toroidal)
-- Provide a parser that reads initial state from file
-- Provide common pattern files
-- Options will include : height and width of the board, board type, initial state file
+```sh
+  go get github.com/anthonyalberto/gameoflife
+```
 
+## Usage
 
-## Left to do
-- Implement goroutine to calculate each cell nextState
-- Write proper doc
-- Add more json patterns!
+Provided `$GOPATH/bin` is in your `$PATH` :
+
+```sh
+  gameoflife [options]
+```
+
+Supported options :
+- `-board`: `regular` or `toroidal`. Toroidal wraps the board around. Default: `regular`
+- `-time`: how many ms to pause between generations. Default: 30
+- `-pattern`: pattern name. Look into the `patterns` folder for all supported values. Default: `glidergun`
+- `-width`: the width of the board. Adapt to your terminal. Default: `150`
+- `-height`: the height of the board. Adapt to your terminal. Default: `50`
+
+Example : play a game with the `glidergun` pattern on a toroidal board that is 140x54 and pauses between generations for 20ms
+```sh
+  gameoflife -board=toroidal -time=20 -pattern=glidergun -width=140 -height=54
+```

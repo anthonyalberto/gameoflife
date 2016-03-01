@@ -9,9 +9,9 @@ import (
 )
 
 func main() {
-	patternFile := flag.String("file",
-		os.Getenv("GOPATH")+"/src/github.com/anthonyalberto/gameoflife/patterns/glidergun.json",
-		"path to json pattern file",
+	pattern := flag.String("pattern",
+		"glidergun",
+		"initialization pattern",
 	)
 
 	width := flag.Int("width", 150, "width of the board")
@@ -22,5 +22,9 @@ func main() {
 	flag.Parse()
 
 	game := game.New()
-	game.Play(*width, *height, *patternFile, *boardType, time.Duration(*generationTime))
+	game.Play(*width, *height, patternFile(*pattern), *boardType, time.Duration(*generationTime))
+}
+
+func patternFile(pattern string) string {
+	return os.Getenv("GOPATH") + "/src/github.com/anthonyalberto/gameoflife/patterns/" + pattern + ".json"
 }
