@@ -17,7 +17,7 @@ Provided `$GOPATH/bin` is in your `$PATH` :
 
 Supported options :
 - `-board`: `regular` or `toroidal`. Toroidal wraps the board around. Default: `regular`
-- `-time`: how many ms to pause between generations. Default: 30
+- `-time`: how many ms to pause between generations. Default: `30`
 - `-pattern`: pattern name. Look into the `patterns` folder for all supported values. Default: `glidergun`
 - `-width`: the width of the board. Adapt to your terminal. Default: `150`
 - `-height`: the height of the board. Adapt to your terminal. Default: `50`
@@ -32,3 +32,5 @@ Play a game that:
 ```sh
   gameoflife -board=toroidal -time=40 -pattern=glidergun -width=140 -height=54
 ```
+
+Look at that gun being destroyed by its own bullets!
