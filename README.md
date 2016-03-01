@@ -22,7 +22,13 @@ Supported options :
 - `-width`: the width of the board. Adapt to your terminal. Default: `150`
 - `-height`: the height of the board. Adapt to your terminal. Default: `50`
 
-Example : play a game with the `glidergun` pattern on a toroidal board that is 140x54 and pauses between generations for 20ms
+### Example
+
+Play a game that:
+- has the `glidergun` pattern
+- has a toroidal board that is 140x54
+- pauses between generations for 40ms
+
 ```sh
-  gameoflife -board=toroidal -time=20 -pattern=glidergun -width=140 -height=54
+  gameoflife -board=toroidal -time=40 -pattern=glidergun -width=140 -height=54
 ```
