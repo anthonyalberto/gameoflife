@@ -18,19 +18,19 @@ func (p *patternParser) extractCoordinates() *coordCollection {
 
 	var aliveCoords aliveCoordinates
 	err := json.Unmarshal(fileContent, &aliveCoords)
-	check(err)
+	checkFileError(err)
 
 	return &coordCollection{aliveCoords.Alive}
 }
 
 func (p *patternParser) readFile() []byte {
 	data, err := ioutil.ReadFile(p.patternFilePath)
-	check(err)
+	checkFileError(err)
 
 	return data
 }
 
-func check(e error) {
+func checkFileError(e error) {
 	if e != nil {
 		panic(e)
 	}

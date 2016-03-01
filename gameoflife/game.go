@@ -9,7 +9,7 @@ type Game struct {
 
 // Play is the entry point to start a new game
 func (g *Game) Play(boardWidth int, boardHeight int, patternFilePath string, neighborStrategy string, generationTime time.Duration) {
-	parser := patternParser{patternFilePath: patternFilePath}
+	parser := patternParser{patternFilePath}
 
 	g.board = newBoard(boardWidth, boardHeight, parser.extractCoordinates(), neighborStrategy)
 

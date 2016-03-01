@@ -14,5 +14,4 @@ Go implementation of Conway's Game of Life
 
 ## Left to do
 - Implement goroutine to calculate each cell nextState
-- Review code
 - Write proper doc

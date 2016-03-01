@@ -18,8 +18,8 @@ func newBoard(width int, height int, aliveCoordinates *coordCollection, neighbor
 		width:  width,
 		height: height,
 	}
-	newBoard.initNeighborStrategy(neighborStrategyStr)
 
+	newBoard.initNeighborStrategy(neighborStrategyStr)
 	newBoard.initCells(aliveCoordinates)
 	newBoard.setNeighbors()
 
@@ -80,8 +80,10 @@ func (b *board) Step() {
 }
 
 func (b *board) Display() {
+	// The board output
 	var outputString string
 
+	// Scan row by row
 	for i := 0; i < b.height; i++ {
 		for j := 0; j < b.width; j++ {
 			if b.cells[j][i].alive {
@@ -94,9 +96,11 @@ func (b *board) Display() {
 		outputString += "\n"
 	}
 
+	// Clear the screen
 	clear, _ := exec.Command("clear").Output()
 	os.Stdout.Write(clear)
-	// os.Stdout.Write(outputString)
+
+	// Print the board
 	fmt.Printf(outputString)
 }
 
