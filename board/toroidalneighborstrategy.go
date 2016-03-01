@@ -1,8 +1,8 @@
-package gameoflife
+package board
 
 type toroidalNeighborStrategy struct{}
 
-func (s *toroidalNeighborStrategy) Neighbors(b *board, x int, y int) []*cell {
+func (s *toroidalNeighborStrategy) Neighbors(b *Board, x int, y int) []*cell {
 	var neighbors []*cell
 
 	minX := 0

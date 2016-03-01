@@ -1,4 +1,4 @@
-package gameoflife
+package board
 
 type cell struct {
 	alive     bool

@@ -1,17 +1,27 @@
-package gameoflife
+package game
 
-import "time"
+import (
+	"time"
+
+	"github.com/anthonyalberto/gameoflife/board"
+	"github.com/anthonyalberto/gameoflife/parser"
+)
 
 // Game is the point of entry of the whole game
 type Game struct {
-	*board
+	*board.Board
+}
+
+// New creates a new Game
+func New() *Game {
+	return &Game{}
 }
 
 // Play is the entry point to start a new game
 func (g *Game) Play(boardWidth int, boardHeight int, patternFilePath string, neighborStrategy string, generationTime time.Duration) {
-	parser := patternParser{patternFilePath}
+	parser := parser.New(patternFilePath)
 
-	g.board = newBoard(boardWidth, boardHeight, parser.extractCoordinates(), neighborStrategy)
+	g.Board = board.New(boardWidth, boardHeight, parser.ExtractCoordinates(), neighborStrategy)
 
 	g.start(generationTime)
 }

@@ -1,8 +1,8 @@
-package gameoflife
+package board
 
 type regularNeighborStrategy struct{}
 
-func (s *regularNeighborStrategy) Neighbors(b *board, x int, y int) []*cell {
+func (s *regularNeighborStrategy) Neighbors(b *Board, x int, y int) []*cell {
 	var neighbors []*cell
 
 	for _, offset := range b.neighborCoordinateOffsets() {

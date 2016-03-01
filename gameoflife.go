@@ -5,7 +5,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/anthonyalberto/gameoflife/gameoflife"
+	"github.com/anthonyalberto/gameoflife/game"
 )
 
 func main() {
@@ -21,6 +21,6 @@ func main() {
 
 	flag.Parse()
 
-	game := gameoflife.Game{}
+	game := game.New()
 	game.Play(*width, *height, *patternFile, *boardType, time.Duration(*generationTime))
 }
