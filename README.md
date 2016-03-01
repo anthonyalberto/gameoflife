@@ -15,3 +15,4 @@ Go implementation of Conway's Game of Life
 ## Left to do
 - Implement goroutine to calculate each cell nextState
 - Write proper doc
+- Add more json patterns!
