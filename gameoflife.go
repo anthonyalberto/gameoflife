@@ -16,7 +16,7 @@ func main() {
 
 	width := flag.Int("width", 150, "width of the board")
 	height := flag.Int("height", 50, "height of the board")
-	boardType := flag.String("board", "regular", "board type (regular or toroidal)")
+	boardType := flag.String("board", "toroidal", "board type (regular or toroidal)")
 	generationTime := flag.Int("time", 50, "milli-second generation time")
 
 	flag.Parse()
