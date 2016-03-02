@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 
 	"github.com/anthonyalberto/gameoflife/coordcollection"
 )
@@ -13,7 +14,8 @@ type Board struct {
 	width  int
 	height int
 	neighborStrategy
-	cells [][]*cell
+	cells  [][]*cell
+	output []byte
 }
 
 // New is the factory
@@ -26,13 +28,13 @@ func New(width int, height int, aliveCoordinates *coordcollection.CoordCollectio
 	newBoard.initNeighborStrategy(neighborStrategyStr)
 	newBoard.initCells(aliveCoordinates)
 	newBoard.setNeighbors()
+	newBoard.initOutput()
 
 	return &newBoard
 }
 
 // Step goes to the next generation
 func (b *Board) Step() {
-	// TODO: use goroutines
 	for i := 0; i < b.width; i++ {
 		for j := 0; j < b.height; j++ {
 			b.cells[i][j].computeNextState()
@@ -48,20 +50,15 @@ func (b *Board) Step() {
 
 // Display displays the board
 func (b *Board) Display() {
-	// The Board output
-	var outputString string
+	currentOutput := make([]byte, len(b.output))
+	copy(currentOutput, b.output)
 
-	// Scan row by row
-	for i := 0; i < b.height; i++ {
-		for j := 0; j < b.width; j++ {
-			if b.cells[j][i].alive {
-				outputString += "O"
-			} else {
-				outputString += " "
+	for i := 0; i < b.width; i++ {
+		for j := 0; j < b.height; j++ {
+			if b.cells[i][j].alive {
+				currentOutput[i+((b.width+1)*j)] = 'O'
 			}
 		}
-
-		outputString += "\n"
 	}
 
 	// Clear the screen
@@ -69,7 +66,18 @@ func (b *Board) Display() {
 	os.Stdout.Write(clear)
 
 	// Print the Board
-	fmt.Printf(outputString)
+	fmt.Printf(string(currentOutput))
+}
+
+func (b *Board) initOutput() {
+	lineString := strings.Repeat(" ", b.width) + "\n"
+	wholeOutput := strings.Repeat(lineString, b.height)
+
+	b.output = []byte(wholeOutput)
+}
+
+func (b *Board) cellCount() int {
+	return b.width * b.height
 }
 
 func (b *Board) initNeighborStrategy(neighborStrategyStr string) {
