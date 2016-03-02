@@ -78,6 +78,8 @@ func (b *Board) initNeighborStrategy(neighborStrategyStr string) {
 		b.neighborStrategy = &regularNeighborStrategy{}
 	case "toroidal":
 		b.neighborStrategy = &toroidalNeighborStrategy{}
+	default:
+		panic("Unsupported board type")
 	}
 }
 
