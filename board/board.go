@@ -56,7 +56,9 @@ func (b *Board) Display() {
 	for i := 0; i < b.width; i++ {
 		for j := 0; j < b.height; j++ {
 			if b.cells[i][j].alive {
-				currentOutput[i+((b.width+1)*j)] = 'O'
+				// There are b.width+1 characters per line (width + '\n')
+				// We then multiply that by the row number(j) we are on, and add the  character number of that row (i)
+				currentOutput[((b.width+1)*j)+i] = 'O'
 			}
 		}
 	}
