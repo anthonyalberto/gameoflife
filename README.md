@@ -19,8 +19,8 @@ Supported options :
 - `-board`: `regular` or `toroidal`. Toroidal wraps the board around. Default: `toroidal`
 - `-time`: how many ms to pause between generations. Default: `30`
 - `-pattern`: pattern name. Look into the `patterns` folder for all supported values. Default: `glidergun`
-- `-width`: the width of the board. Adapt to your terminal. Default: `150`
-- `-height`: the height of the board. Adapt to your terminal. Default: `50`
+- `-width`: the width of the board. Adapt to your terminal. Default: `150`. Suggested : >100 to support all patterns.
+- `-height`: the height of the board. Adapt to your terminal. Default: `50`. Suggested : >35 to support all patterns.
 
 ### Example
 
