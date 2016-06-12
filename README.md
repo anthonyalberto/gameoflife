@@ -20,7 +20,7 @@ Supported options :
 - `-time`: how many ms to pause between generations. Default: `50`
 - `-pattern`: pattern name. Look into the `patterns` folder for all supported values. Default: `glidergun`
 - `-width`: the width of the board. Adapt to your terminal. Default: `150`, suggested > `80` to support all patterns.
-- `-height`: the height of the board. Adapt to your terminal. Default: `50`, suggested > `35` to support all patterns.Â
+- `-height`: the height of the board. Adapt to your terminal. Default: `50`, suggested > `35` to support all patterns.
 
 ### Example
 
