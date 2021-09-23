@@ -4,7 +4,7 @@ Go implementation of Conway's Game of Life
 ## Installation
 
 ```sh
-  go get github.com/anthonyalberto/gameoflife
+  go install github.com/anthonyalberto/gameoflife@latest
 ```
 
 ## Usage
@@ -16,6 +16,7 @@ Provided `$GOPATH/bin` is in your `$PATH` :
 ```
 
 Supported options :
+
 - `-board`: `regular` or `toroidal`. Toroidal wraps the board around. Default: `toroidal`
 - `-time`: how many ms to pause between generations. Default: `50`
 - `-pattern`: pattern name. Look into the `patterns` folder for all supported values. Default: `glidergun`
@@ -25,6 +26,7 @@ Supported options :
 ### Example
 
 Play a game that:
+
 - has the `glidergun` pattern
 - has a toroidal board that is 140x54
 - pauses between generations for 40ms
@@ -37,4 +39,4 @@ Look at that gun being destroyed by its own bullets!
 
 ## Credits
 
-- The ortho-spaceship comes from this great article : https://niginsblog.wordpress.com/2016/03/07/new-spaceship-speed-in-conways-game-of-life/
+- The ortho-spaceship comes from [this great article](https://niginsblog.wordpress.com/2016/03/07/new-spaceship-speed-in-conways-game-of-life/)
