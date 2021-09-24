@@ -6,7 +6,7 @@ Go implementation of Conway's Game of Life
 TODO: figure out how to load file from `$GOPATH/pkg/mod` and use `go install`
 
 ```sh
-  GO111MODULE=off go get github.com/anthonyalberto/gameoflife
+  go install github.com/anthonyalberto/gameoflife@latest
 ```
 
 ## Usage
