@@ -18,8 +18,8 @@ func New() *Game {
 }
 
 // Play is the entry point to start a new game
-func (g *Game) Play(boardWidth int, boardHeight int, patternFilePath string, neighborStrategy string, generationTime time.Duration) {
-	parser := parser.New(patternFilePath)
+func (g *Game) Play(boardWidth int, boardHeight int, patternFileContent []byte, neighborStrategy string, generationTime time.Duration) {
+	parser := parser.New(patternFileContent)
 
 	g.Board = board.New(boardWidth, boardHeight, parser.ExtractCoordinates(), neighborStrategy)
 
