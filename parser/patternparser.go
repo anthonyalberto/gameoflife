@@ -2,14 +2,13 @@ package parser
 
 import (
 	"encoding/json"
-	"io/ioutil"
 
 	"github.com/anthonyalberto/gameoflife/coordcollection"
 )
 
 // PatternParser extracts alive starting coordinates from a json file
 type PatternParser struct {
-	patternFilePath string
+	patternFileContent []byte
 }
 
 type aliveCoordinates struct {
@@ -17,26 +16,17 @@ type aliveCoordinates struct {
 }
 
 // New builds a new parser
-func New(patternFilePath string) *PatternParser {
-	return &PatternParser{patternFilePath}
+func New(patternFileContent []byte) *PatternParser {
+	return &PatternParser{patternFileContent}
 }
 
 // ExtractCoordinates extracts coordinates from the file
 func (p *PatternParser) ExtractCoordinates() *coordcollection.CoordCollection {
-	fileContent := p.readFile()
-
 	var aliveCoords aliveCoordinates
-	err := json.Unmarshal(fileContent, &aliveCoords)
+	err := json.Unmarshal(p.patternFileContent, &aliveCoords)
 	checkFileError(err)
 
 	return coordcollection.New(aliveCoords.Alive)
-}
-
-func (p *PatternParser) readFile() []byte {
-	data, err := ioutil.ReadFile(p.patternFilePath)
-	checkFileError(err)
-
-	return data
 }
 
 func checkFileError(e error) {

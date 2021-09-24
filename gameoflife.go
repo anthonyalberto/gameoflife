@@ -1,12 +1,17 @@
 package main
 
 import (
+	"embed"
 	"flag"
-	"os"
+	"fmt"
+	"log"
 	"time"
 
 	"github.com/anthonyalberto/gameoflife/game"
 )
+
+//go:embed patterns
+var embededFiles embed.FS
 
 func main() {
 	pattern := flag.String("pattern",
@@ -22,9 +27,15 @@ func main() {
 	flag.Parse()
 
 	game := game.New()
-	game.Play(*width, *height, patternFile(*pattern), *boardType, time.Duration(*generationTime))
+	game.Play(*width, *height, patternFileContent(*pattern), *boardType, time.Duration(*generationTime))
 }
 
-func patternFile(pattern string) string {
-	return os.Getenv("GOPATH") + "/src/github.com/anthonyalberto/gameoflife/patterns/" + pattern + ".json"
+func patternFileContent(pattern string) []byte {
+	data, err := embededFiles.ReadFile(fmt.Sprintf("patterns/%s.json", pattern))
+
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	return data
 }
