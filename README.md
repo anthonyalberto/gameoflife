@@ -1,4 +1,5 @@
 # Game of Life
+
 Go implementation of Conway's Game of Life
 
 ## Installation

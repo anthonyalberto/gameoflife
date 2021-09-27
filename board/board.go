@@ -68,7 +68,7 @@ func (b *Board) Display() {
 	os.Stdout.Write(clear)
 
 	// Print the Board
-	fmt.Printf(string(currentOutput))
+	fmt.Print(string(currentOutput))
 }
 
 func (b *Board) initOutput() {
@@ -76,10 +76,6 @@ func (b *Board) initOutput() {
 	wholeOutput := strings.Repeat(lineString, b.height)
 
 	b.output = []byte(wholeOutput)
-}
-
-func (b *Board) cellCount() int {
-	return b.width * b.height
 }
 
 func (b *Board) initNeighborStrategy(neighborStrategyStr string) {
